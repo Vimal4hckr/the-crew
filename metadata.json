@@ -1,0 +1,6 @@
+{
+  "name": "The Film Crew — Cinematic Movie Portfolio",
+  "description": "A premium, film-industry-style cinematic portfolio website showcasing the four core movie crew members with an interactive film-roll intro.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-cinzel: 'Cinzel', serif;
+    --font-bebas: 'Bebas Neue', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #050507;
+    color: #e2e2e8;
+  }
+}
+
+/* Cinematic film grain overlay */
+.film-grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: grainJitter 0.5s steps(6) infinite;
+}
+
+@keyframes grainJitter {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, -2%); }
+  40% { transform: translate(2%, 3%); }
+  60% { transform: translate(-2%, 1%); }
+  80% { transform: translate(3%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Projector flicker effect */
+@keyframes projectorFlicker {
+  0%, 100% { opacity: 1; }
+  12% { opacity: 0.94; }
+  28% { opacity: 0.98; }
+  42% { opacity: 0.91; }
+  56% { opacity: 1; }
+  70% { opacity: 0.95; }
+  85% { opacity: 0.99; }
+}
+
+.projector-flicker {
+  animation: projectorFlicker 0.18s infinite;
+}
+
+/* 35mm Film Strip roll keyframes - seamless 50% translation */
+@keyframes filmRollFast {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+
+.animate-film-roll {
+  animation: filmRollFast 0.9s linear infinite;
+  will-change: transform;
+}
+
+/* Radar countdown sweep */
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radarSweep 1s linear infinite;
+}
+
+/* Subtle glow pulse */
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+.animate-pulse-subtle {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Font helpers */
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-bebas {
+  font-family: var(--font-bebas);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+::-webkit-scrollbar-thumb {
+  background: #272733;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #47475a;
+}
