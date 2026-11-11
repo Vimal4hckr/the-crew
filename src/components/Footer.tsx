@@ -21,25 +21,39 @@ export const Footer: React.FC = () => {
           "MADE FOR THE LOVE OF CINEMA."
         </p>
 
-        {/* Four Crew Member Links */}
-        <div className="w-full max-w-3xl pt-8 border-t border-zinc-900 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-left">
-          {CREW_MEMBERS.map((member) => (
-            <a
-              key={member.id}
-              href={member.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-zinc-900 hover:border-zinc-700 bg-zinc-950/40 rounded transition-all group cursor-pointer"
-            >
-              <div className="text-[10px] font-mono-code text-zinc-500 uppercase tracking-widest mb-1">
-                {member.role}
+        {/* Crew Member Links */}
+        <div className="w-full max-w-4xl pt-8 border-t border-zinc-900 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-10 text-left">
+          {CREW_MEMBERS.map((member) =>
+            member.link ? (
+              <a
+                key={member.id}
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 border border-zinc-900 hover:border-zinc-700 bg-zinc-950/40 rounded transition-all group cursor-pointer"
+              >
+                <div className="text-[10px] font-mono-code text-zinc-500 uppercase tracking-widest mb-1">
+                  {member.role}
+                </div>
+                <div className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center justify-between">
+                  <span>{member.name}</span>
+                  <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </div>
+              </a>
+            ) : (
+              <div
+                key={member.id}
+                className="p-3 border border-zinc-900 bg-zinc-950/40 rounded"
+              >
+                <div className="text-[10px] font-mono-code text-zinc-500 uppercase tracking-widest mb-1">
+                  {member.role}
+                </div>
+                <div className="text-xs font-semibold text-zinc-300">
+                  <span>{member.name}</span>
+                </div>
               </div>
-              <div className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center justify-between">
-                <span>{member.name}</span>
-                <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              </div>
-            </a>
-          ))}
+            )
+          )}
         </div>
 
         {/* Minimal Copyright */}

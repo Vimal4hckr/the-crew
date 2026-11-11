@@ -34,18 +34,18 @@ export default function App() {
           <div>
             <div className="text-[11px] font-mono-code text-zinc-400 uppercase tracking-[0.3em] mb-1.5 flex items-center gap-2">
               <Film className="w-3.5 h-3.5 text-zinc-400" />
-              <span>THE PRODUCTION COLLECTIVE · CORE FOUR</span>
+              <span>THE PRODUCTION COLLECTIVE</span>
             </div>
             <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-[0.08em] uppercase">
               THE FILM CREW
             </h1>
           </div>
           <div className="text-xs sm:text-sm text-zinc-400 font-mono-code tracking-wide max-w-md">
-            Four disciplines. One cinematic vision. Scroll to explore the filmmakers behind the frame.
+            Cinematic vision from script to screen. Scroll to explore the filmmakers behind the frame.
           </div>
         </section>
 
-        {/* FOUR CREW MEMBERS STACKED (STARTING IMMEDIATELY WITH MEMBER 01: WRITER & DIRECTOR) */}
+        {/* CREW MEMBERS STACKED (STARTING IMMEDIATELY WITH MEMBER 01: DIRECTOR) */}
         <section className="relative px-6 sm:px-8 py-10 sm:py-16 max-w-7xl mx-auto space-y-16 lg:space-y-24">
           {CREW_MEMBERS.map((member, index) => (
             <CrewCard key={member.id} member={member} index={index} />

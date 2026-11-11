@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Play, Film } from 'lucide-react';
 import { soundEngine } from '../utils/soundEngine';
@@ -8,8 +8,6 @@ interface CinematicIntroProps {
 }
 
 export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) => {
-  const [timecode, setTimecode] = useState('01:00:00:00');
-
   // DOM references for GSAP timeline
   const introRootRef = useRef<HTMLDivElement>(null);
   const idleContainerRef = useRef<HTMLDivElement>(null);
@@ -24,21 +22,6 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
 
   const isClickableRef = useRef<boolean>(true);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-
-  // SMPTE running timecode (24 FPS)
-  useEffect(() => {
-    let frame = 0;
-    const interval = window.setInterval(() => {
-      frame = (frame + 1) % 24;
-      const secs = Math.floor(Date.now() / 1000) % 60;
-      const mins = Math.floor(Date.now() / 60000) % 60;
-      const hrs = 1;
-      const fmt = (n: number) => n.toString().padStart(2, '0');
-      setTimecode(`${fmt(hrs)}:${fmt(mins)}:${fmt(secs)}:${fmt(frame)}`);
-    }, 41.6);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -284,20 +267,8 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         className="absolute inset-0 z-50 bg-radial from-white/40 via-amber-100/10 to-transparent pointer-events-none"
       />
 
-      {/* Top 2.39:1 Anamorphic Letterbox Bar */}
-      <div className="relative top-0 left-0 right-0 h-10 sm:h-12 md:h-14 bg-black z-30 border-b border-white/5 flex items-center justify-between px-4 sm:px-8 text-[9px] sm:text-[10px] font-mono-code tracking-widest text-zinc-400 shrink-0">
-        <div className="flex items-center gap-3 sm:gap-4">
-          <span className="text-zinc-300 font-bold">REEL 01-A</span>
-          <span className="hidden xs:inline text-zinc-600">/</span>
-          <span className="hidden xs:inline">35MM · 24 FPS</span>
-          <span className="text-zinc-600">/</span>
-          <span className="text-zinc-300">TC {timecode}</span>
-        </div>
-        <div className="flex items-center gap-4 text-zinc-400">
-          <span className="hidden sm:inline text-zinc-600">COLOR SPACE:</span>
-          <span>DCI-P3 · 5600K</span>
-        </div>
-      </div>
+      {/* Top Anamorphic Letterbox Bar */}
+      <div className="relative top-0 left-0 right-0 h-10 sm:h-12 md:h-14 bg-black z-30 border-b border-white/5 shrink-0" />
 
       {/* Viewfinder Framing Marks */}
       <div className="absolute inset-x-4 sm:inset-x-8 inset-y-12 sm:inset-y-16 pointer-events-none border border-white/5 z-20">
@@ -397,21 +368,12 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             >
               3
             </div>
-
-            {/* Sub-label */}
-            <div className="absolute -bottom-8 font-mono-code text-[10px] sm:text-[11px] tracking-[0.3em] text-zinc-400 uppercase">
-              OPTICAL SOUND SYNC · 24 FPS
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom 2.39:1 Anamorphic Letterbox Bar */}
-      <div className="relative bottom-0 left-0 right-0 h-10 sm:h-12 md:h-14 bg-black z-30 border-t border-white/5 flex items-center justify-between px-4 sm:px-8 text-[9px] sm:text-[10px] font-mono-code tracking-widest text-zinc-400 shrink-0">
-        <div>ASPECT RATIO 2.39:1 SCOPE</div>
-        <div className="hidden sm:inline text-zinc-500">ACADEMY APERTURE GATE · MASTER PROJECTION</div>
-        <div className="text-zinc-300">FPS: 24.000</div>
-      </div>
+      {/* Bottom Anamorphic Letterbox Bar */}
+      <div className="relative bottom-0 left-0 right-0 h-10 sm:h-12 md:h-14 bg-black z-30 border-t border-white/5 shrink-0" />
     </div>
   );
 };

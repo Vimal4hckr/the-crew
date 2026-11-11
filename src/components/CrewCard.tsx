@@ -22,9 +22,6 @@ export const CrewCard: React.FC<CrewCardProps> = ({ member }) => {
           <span className="text-zinc-600">/</span>
           <span className="tracking-widest uppercase text-zinc-300">{member.role}</span>
         </div>
-        <div className="flex items-center gap-2 text-zinc-500 text-[10px]">
-          <span>{member.cameraSpec}</span>
-        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
@@ -119,25 +116,27 @@ export const CrewCard: React.FC<CrewCardProps> = ({ member }) => {
           </div>
 
           {/* Action Button & Link Section */}
-          <div className="pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <a
-              href={member.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-3 px-6 py-3.5 bg-white text-black font-semibold text-xs tracking-[0.2em] uppercase rounded-none hover:bg-zinc-200 transition-all cursor-pointer shadow-[0_4px_20px_rgba(255,255,255,0.1)] shrink-0"
-            >
-              <span>{member.buttonLabel}</span>
-              <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-            </a>
+          {member.link && member.buttonLabel && (
+            <div className="pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <a
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/btn inline-flex items-center gap-3 px-6 py-3.5 bg-white text-black font-semibold text-xs tracking-[0.2em] uppercase rounded-none hover:bg-zinc-200 transition-all cursor-pointer shadow-[0_4px_20px_rgba(255,255,255,0.1)] shrink-0"
+              >
+                <span>{member.buttonLabel}</span>
+                <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              </a>
 
-            <div className="text-[11px] font-mono-code text-zinc-500 truncate max-w-full">
-              {member.role === 'WRITER & DIRECTOR' ? (
-                <span>Director Portfolio · Official Reference</span>
-              ) : (
-                <span>Instagram Profile · @{member.name.replace(/\s+/g, '').toLowerCase()}</span>
-              )}
+              <div className="text-[11px] font-mono-code text-zinc-500 truncate max-w-full">
+                {member.buttonLabel === 'VIEW PORTFOLIO' ? (
+                  <span>Official Portfolio · External Reference</span>
+                ) : (
+                  <span>Instagram Profile · @{member.name.replace(/\s+/g, '').toLowerCase()}</span>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </article>
