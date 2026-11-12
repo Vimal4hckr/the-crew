@@ -23,7 +23,7 @@ export const CREW_MEMBERS: CrewMember[] = [
     number: '01',
     role: 'DIRECTOR',
     name: 'Balaji',
-    designation: 'Director',
+    designation: 'Director & Actor',
     imageFilename: 'writer-director.jpg',
     imagePath: '/images/writer-director.jpg',
     defaultImagePath: '/images/writer-director.jpg',
