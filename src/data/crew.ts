@@ -21,7 +21,7 @@ export const CREW_MEMBERS: CrewMember[] = [
   {
     id: 'director',
     number: '01',
-    role: 'DIRECTOR',
+    role: 'DIRECTOR & Actor',
     name: 'Balaji',
     designation: 'Director & Actor',
     imageFilename: 'writer-director.jpg',
